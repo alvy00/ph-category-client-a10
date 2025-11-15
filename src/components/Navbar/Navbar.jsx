@@ -6,13 +6,15 @@ import { toast } from "react-toastify";
 import profileIcon from "../../assets/profile.png";
 
 const Navbar = () => {
-    const [user] = useState(false);
+    const [user] = useState(true);
     const [loading] = useState(false);
     const navigate = useNavigate();
+
     const handleLogout = async () => {
         navigate("/");
         toast.success("Logged out!");
     };
+
     return (
         <div className="z-100 fixed top-0 navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
@@ -45,6 +47,14 @@ const Navbar = () => {
                         >
                             <li>
                                 {" "}
+                                <Link to="/">Home</Link>{" "}
+                            </li>
+
+                            <li>
+                                <Link to="/bills">Bills</Link>
+                            </li>
+                            <li>
+                                {" "}
                                 <Link to="/login">Login</Link>{" "}
                             </li>
 
@@ -59,12 +69,15 @@ const Navbar = () => {
                         >
                             <li>
                                 {" "}
-                                <Link to="/profile">Profile</Link>{" "}
+                                <Link to="/">Home</Link>{" "}
+                            </li>
+                            <li>
+                                {" "}
+                                <Link to="/bills">Bills</Link>{" "}
                             </li>
 
                             <li>
-                                {" "}
-                                <Link to="/wishlist">WishList</Link>{" "}
+                                <Link to="/mybills">My Pay Bills</Link>
                             </li>
 
                             <li>
@@ -92,6 +105,51 @@ const Navbar = () => {
                     </Link>{" "}
                 </span>
             </div>
+
+            <div className="navbar-center hidden lg:flex">
+                {loading ? (
+                    <div className="flex justify-center items-center">
+                        <span className="loading loading-spinner text-warning"></span>
+                    </div>
+                ) : !user ? (
+                    <ul className="menu menu-horizontal px-3 text-lg gap-5">
+                        <li className=" rounded-sm">
+                            {" "}
+                            <Link to="/">Home</Link>{" "}
+                        </li>
+
+                        <li className=" rounded-sm">
+                            <Link to="/bills">Bills</Link>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="menu menu-horizontal px-3 text-lg gap-5 items-center">
+                        <li className=" rounded-sm">
+                            {" "}
+                            <Link to="/">Home</Link>{" "}
+                        </li>
+
+                        <li className=" rounded-sm">
+                            <Link to="/bills">Bills</Link>
+                        </li>
+                        <li className=" rounded-sm">
+                            <Link to="/mybills">My Pay Bills</Link>
+                        </li>
+                        <li className=" rounded-sm">
+                            {" "}
+                            <Link to="/profile">
+                                {" "}
+                                <img
+                                    className="h-10 w-10"
+                                    src={profileIcon}
+                                    alt="profile icon"
+                                />{" "}
+                            </Link>{" "}
+                        </li>
+                    </ul>
+                )}
+            </div>
+
             <div className="navbar-end hidden lg:flex">
                 {loading ? (
                     <div className="flex justify-center items-center">
@@ -110,23 +168,6 @@ const Navbar = () => {
                     </ul>
                 ) : (
                     <ul className="menu menu-horizontal px-3 text-lg gap-5 items-center">
-                        <li className=" rounded-sm">
-                            {" "}
-                            <Link to="/profile">
-                                {" "}
-                                <img
-                                    className="h-10 w-10"
-                                    src={profileIcon}
-                                    alt="profile icon"
-                                />{" "}
-                            </Link>{" "}
-                        </li>
-
-                        <li className="bg-gray-800 rounded-sm">
-                            {" "}
-                            <Link to="/wishlist">WishList</Link>{" "}
-                        </li>
-
                         <li className="border border-red-600 rounded-sm hover:bg-red-500 transition duration-300 ease-in-out">
                             <button onClick={handleLogout}>Logout</button>
                         </li>
