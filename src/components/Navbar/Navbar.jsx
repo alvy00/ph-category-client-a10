@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import profileIcon from "../../assets/profile.png";
 
 const Navbar = () => {
-    const [user] = useState(true);
+    const [user] = useState(false);
     const [loading] = useState(false);
     const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ const Navbar = () => {
                             </li>
                             <li>
                                 {" "}
-                                <Link to="/bills">Bills</Link>{" "}
+                                <Link to="/"></Link>{" "}
                             </li>
 
                             <li>
@@ -121,6 +121,11 @@ const Navbar = () => {
                         <li className=" rounded-sm">
                             <Link to="/bills">Bills</Link>
                         </li>
+
+                        <li className="bg-gray-800 rounded-sm">
+                            {" "}
+                            <Link to="/login">Login</Link>{" "}
+                        </li>
                     </ul>
                 ) : (
                     <ul className="menu menu-horizontal px-3 text-lg gap-5 items-center">
@@ -157,11 +162,6 @@ const Navbar = () => {
                     </div>
                 ) : !user ? (
                     <ul className="menu menu-horizontal px-3 text-lg gap-5">
-                        <li className="bg-gray-800 rounded-sm">
-                            {" "}
-                            <Link to="/login">Login</Link>{" "}
-                        </li>
-
                         <li className="border border-cyan-600 rounded-sm hover:bg-cyan-500 transition duration-300 ease-in-out">
                             <Link to="/register">Register</Link>
                         </li>
