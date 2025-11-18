@@ -106,7 +106,7 @@ const Navbar = () => {
                 </span>
             </div>
 
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-end hidden lg:flex">
                 {loading ? (
                     <div className="flex justify-center items-center">
                         <span className="loading loading-spinner text-warning"></span>
@@ -125,6 +125,9 @@ const Navbar = () => {
                         <li className="bg-gray-800 rounded-sm">
                             {" "}
                             <Link to="/login">Login</Link>{" "}
+                        </li>
+                        <li className="border border-cyan-600 rounded-sm hover:bg-cyan-500 transition duration-300 ease-in-out">
+                            <Link to="/register">Register</Link>
                         </li>
                     </ul>
                 ) : (
@@ -151,23 +154,6 @@ const Navbar = () => {
                                 />{" "}
                             </Link>{" "}
                         </li>
-                    </ul>
-                )}
-            </div>
-
-            <div className="navbar-end hidden lg:flex">
-                {loading ? (
-                    <div className="flex justify-center items-center">
-                        <span className="loading loading-spinner text-warning"></span>
-                    </div>
-                ) : !user ? (
-                    <ul className="menu menu-horizontal px-3 text-lg gap-5">
-                        <li className="border border-cyan-600 rounded-sm hover:bg-cyan-500 transition duration-300 ease-in-out">
-                            <Link to="/register">Register</Link>
-                        </li>
-                    </ul>
-                ) : (
-                    <ul className="menu menu-horizontal px-3 text-lg gap-5 items-center">
                         <li className="border border-red-600 rounded-sm hover:bg-red-500 transition duration-300 ease-in-out">
                             <button onClick={handleLogout}>Logout</button>
                         </li>
