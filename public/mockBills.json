@@ -2,61 +2,101 @@
     {
         "title": "Monthly Electricity Bill",
         "category": "Electricity",
+        "email": "user1@gmail.com",
         "location": "Banani",
-        "date": "2025-11-01"
+        "description": "Regular monthly electricity usage bill.",
+        "image": "https://example.com/electricity1.jpg",
+        "date": "2025-11-01",
+        "amount": 750
     },
     {
         "title": "Gas Connection Fee",
         "category": "Gas",
+        "email": "user2@gmail.com",
         "location": "Dhanmondi",
-        "date": "2025-11-03"
+        "description": "One-time payment for new gas line connection.",
+        "image": "https://example.com/gas1.jpg",
+        "date": "2025-11-03",
+        "amount": 1200
     },
     {
         "title": "Water Supply Bill",
         "category": "Water",
+        "email": "user3@gmail.com",
         "location": "Uttara",
-        "date": "2025-11-05"
+        "description": "Monthly water usage bill for residential usage.",
+        "image": "https://example.com/water1.jpg",
+        "date": "2025-11-05",
+        "amount": 300
     },
     {
         "title": "Internet Service Charge",
         "category": "Internet",
+        "email": "user4@gmail.com",
         "location": "Gulshan",
-        "date": "2025-11-07"
+        "description": "Monthly subscription for 50 Mbps broadband.",
+        "image": "https://example.com/internet1.jpg",
+        "date": "2025-11-07",
+        "amount": 1200
     },
     {
         "title": "Electricity Overdue Payment",
         "category": "Electricity",
+        "email": "user5@gmail.com",
         "location": "Mirpur",
-        "date": "2025-11-09"
+        "description": "Overdue bill for last month's electricity usage.",
+        "image": "https://example.com/electricity2.jpg",
+        "date": "2025-11-09",
+        "amount": 950
     },
     {
         "title": "Gas Cylinder Refill Bill",
         "category": "Gas",
+        "email": "user6@gmail.com",
         "location": "Banani",
-        "date": "2025-11-10"
+        "description": "Payment for LP gas cylinder refill.",
+        "image": "https://example.com/gas2.jpg",
+        "date": "2025-11-10",
+        "amount": 1100
     },
     {
         "title": "Water Meter Reading Charge",
         "category": "Water",
+        "email": "user7@gmail.com",
         "location": "Dhanmondi",
-        "date": "2025-11-12"
+        "description": "Charge for monthly water meter inspection.",
+        "image": "https://example.com/water2.jpg",
+        "date": "2025-11-12",
+        "amount": 150
     },
     {
         "title": "High-Speed Internet Plan",
         "category": "Internet",
+        "email": "user8@gmail.com",
         "location": "Uttara",
-        "date": "2025-11-14"
+        "description": "Payment for upgraded 100 Mbps plan.",
+        "image": "https://example.com/internet2.jpg",
+        "date": "2025-11-14",
+        "amount": 1800
     },
     {
         "title": "Electricity Usage Fee",
         "category": "Electricity",
+        "email": "user9@gmail.com",
         "location": "Gulshan",
-        "date": "2025-11-16"
+        "description": "Monthly electricity bill based on unit usage.",
+        "image": "https://example.com/electricity3.jpg",
+        "date": "2025-11-16",
+        "amount": 680
     },
     {
         "title": "Gas Bill for Kitchen",
         "category": "Gas",
+        "email": "user10@gmail.com",
         "location": "Mirpur",
-        "date": "2025-11-18"
+        "description": "Monthly gas usage bill for household cooking.",
+        "image": "https://example.com/gas3.jpg",
+        "date": "2025-11-18",
+        "amount": 520
     }
 ]

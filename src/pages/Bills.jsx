@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AllBills from "../components/AllBills/AllBills";
 
 const Bills = () => {
-    return <div>Bills</div>;
+    useEffect(() => {
+        document.title = "GoBILLS | Bills";
+    }, []);
+    return (
+        <>
+            <AllBills />
+        </>
+    );
 };
 
 export default Bills;
