@@ -8,9 +8,9 @@ import {
     signOut,
     onAuthStateChanged,
 } from "firebase/auth";
-import { app } from "../src/firebase/firebase.config";
+import { app } from "../firebase/firebase.config";
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
-    const signIn = () => {
+    const signIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };

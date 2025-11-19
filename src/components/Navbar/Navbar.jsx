@@ -4,19 +4,20 @@ import { motion } from "motion/react";
 import { use, useState } from "react";
 import { toast } from "react-toastify";
 import profileIcon from "../../assets/profile.png";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
-    const [user] = useState(false);
-    const [loading] = useState(false);
+    const { user, loading, logOut } = use(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = async () => {
+        await logOut();
         navigate("/");
         toast.success("Logged out!");
     };
 
     return (
-        <div className="z-100 fixed top-0 navbar bg-base-100 shadow-sm">
+        <div className="z-100 fixed top-0 left-0 w-full h-16 navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div
