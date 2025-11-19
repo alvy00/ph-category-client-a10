@@ -13,6 +13,8 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <RootLayout />,
+        id: "Root",
+        loader: () => fetch("mockBills.json"),
         children: [
             { index: true, element: <Home /> },
             { path: "bills", element: <Bills /> },

@@ -7,7 +7,7 @@ const RootLayout = () => {
     return (
         <>
             <Navbar />
-            <div className="min-h-[80vh] flex justify-center items-center pt-16">
+            <div className="min-h-[80vh] flex justify-center pt-16">
                 <Outlet />
             </div>
             <Footer />
