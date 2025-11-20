@@ -8,6 +8,8 @@ import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
+import PrivateRoute from "../provider/PrivateRoute";
+import BillDetail from "../pages/BillDetail";
 
 const router = createBrowserRouter([
     {
@@ -18,7 +20,22 @@ const router = createBrowserRouter([
         children: [
             { index: true, element: <Home /> },
             { path: "bills", element: <Bills /> },
-            { path: "mybills", element: <MyBills /> },
+            {
+                path: "mybills",
+                element: (
+                    <PrivateRoute>
+                        <MyBills />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "billdetails/:id",
+                element: (
+                    <PrivateRoute>
+                        <BillDetail />
+                    </PrivateRoute>
+                ),
+            },
             { path: "profile", element: <Profile /> },
             {
                 path: "auth",

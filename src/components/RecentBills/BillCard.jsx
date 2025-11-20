@@ -3,6 +3,7 @@ import electricity from "../../assets/elec.png";
 import gas from "../../assets/gas.png";
 import internet from "../../assets/int.png";
 import water from "../../assets/water.png";
+import { useNavigate } from "react-router";
 
 const images = {
     electricity: electricity,
@@ -12,6 +13,13 @@ const images = {
 };
 
 const BillCard = ({ bill }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        //toast(`${bill.title} was clicked`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        navigate(`/billdetails/${bill._id}`);
+    };
     return (
         <Card
             className="max-w-sm"
@@ -39,7 +47,10 @@ const BillCard = ({ bill }) => {
                     <span className="text-2xl">৳</span>
                     {bill.amount || "--"}
                 </span>
-                <button className="btn btn-outline btn-info">
+                <button
+                    onClick={handleClick}
+                    className="btn btn-outline btn-info"
+                >
                     See Details
                 </button>
             </div>
