@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { Link, useNavigate, useParams, useRouteLoaderData } from "react-router";
 import fallbackimg from "../assets/imageNotFound.png";
+import PayBill from "../components/AllBills/PayBill";
 
 const BillDetail = () => {
     const { id } = useParams();
@@ -51,12 +52,7 @@ const BillDetail = () => {
 
                 {/* Pay bill Button */}
                 <div className="flex flex-wrap gap-4 justify-center">
-                    <Link
-                        to="/"
-                        className="border border-gray-500 hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors"
-                    >
-                        Pay Bill
-                    </Link>
+                    <PayBill bill={bill} />
                 </div>
             </div>
         </section>

@@ -6,7 +6,7 @@ const RecentBills = () => {
     return (
         <div className="flex flex-col gap-5 p-5">
             <span className="font-bold text-4xl">Recent Bills</span>
-            <div className="grid grid-cols-3 gap-3 pl-5">
+            <div className="grid grid-cols-3 gap-5 pl-5">
                 {bills.slice(0, 6).map((bill) => (
                     <BillCard bill={bill} />
                 ))}

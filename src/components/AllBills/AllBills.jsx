@@ -24,7 +24,7 @@ const AllBills = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 pl-5">
+            <div className="grid grid-cols-3 gap-5 pl-5">
                 {filteredBills.map((bill) => (
                     <BillCard bill={bill} />
                 ))}
