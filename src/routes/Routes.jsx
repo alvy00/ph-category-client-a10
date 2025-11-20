@@ -10,6 +10,7 @@ import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import PrivateRoute from "../provider/PrivateRoute";
 import BillDetail from "../pages/BillDetail";
+import FAQ from "../pages/FAQ";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
                 ),
             },
             { path: "profile", element: <Profile /> },
+            { path: "faq", element: <FAQ /> },
             {
                 path: "auth",
                 element: <AuthLayout />,

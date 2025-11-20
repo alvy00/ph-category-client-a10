@@ -55,6 +55,9 @@ const Navbar = () => {
                                 <Link to="/bills">Bills</Link>
                             </li>
                             <li>
+                                <Link to="/faq">FAQ</Link>
+                            </li>
+                            <li>
                                 {" "}
                                 <Link to="/login">Login</Link>{" "}
                             </li>
@@ -73,14 +76,17 @@ const Navbar = () => {
                                 <Link to="/">Home</Link>{" "}
                             </li>
                             <li>
-                                {" "}
-                                <Link to="/"></Link>{" "}
+                                <Link to="/bills">Bills</Link>
                             </li>
-
                             <li>
                                 <Link to="/mybills">My Pay Bills</Link>
                             </li>
-
+                            <li>
+                                <Link to="/faq">FAQ</Link>
+                            </li>
+                            <li>
+                                <Link to="/profile">Profile</Link>
+                            </li>
                             <li>
                                 <button
                                     className="bg-red-800"
@@ -122,7 +128,9 @@ const Navbar = () => {
                         <li className=" rounded-sm">
                             <Link to="/bills">Bills</Link>
                         </li>
-
+                        <li>
+                            <Link to="/faq">FAQ</Link>
+                        </li>
                         <li className="bg-gray-800 rounded-sm">
                             {" "}
                             <Link to="/login">Login</Link>{" "}
@@ -143,6 +151,9 @@ const Navbar = () => {
                         </li>
                         <li className=" rounded-sm">
                             <Link to="/mybills">My Pay Bills</Link>
+                        </li>
+                        <li>
+                            <Link to="/faq">FAQ</Link>
                         </li>
                         <li className=" rounded-sm">
                             {" "}
