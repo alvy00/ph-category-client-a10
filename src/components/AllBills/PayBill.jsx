@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { use, useState } from "react";
 import { toast } from "react-toastify";
@@ -30,7 +31,7 @@ const PayBill = ({ bill }) => {
         <>
             <div
                 onClick={() => setIsOpen(true)}
-                className="border border-gray-500 hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors"
+                className="cursor-pointer border border-gray-500 hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors"
             >
                 Pay Bill
             </div>
