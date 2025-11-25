@@ -1,16 +1,18 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
-import React, { use, useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
+import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
-import { Button } from "@headlessui/react";
 import { toast } from "react-toastify";
+import UpdateBill from "../components/AllBills/UpdateBill";
 
 const MyBills = () => {
     const { user } = use(AuthContext);
     const bills = useLoaderData();
     const [paidBills, setPaidBills] = useState([]);
     const [paidMoney, setPaidMoney] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
     // console.log(bills);
 
     useEffect(() => {
@@ -31,8 +33,9 @@ const MyBills = () => {
         paidBills.map((bill) => setPaidMoney((prev) => prev + bill.amount));
     }, [paidBills]);
 
-    const handleDelete = (id) => {
-        toast.success(`${id}`);
+    const handleDelete = async (id) => {
+        await axios.delete(`http://localhost:3000/deletebill/${id}`);
+        toast.success(`The bill was deleted!`);
     };
 
     return (
@@ -41,6 +44,9 @@ const MyBills = () => {
                 <table className="min-w-full border">
                     <thead>
                         <tr className="bg-base-200">
+                            <th className="border border-gray-500 px-4 py-2">
+                                Title
+                            </th>
                             <th className="border border-gray-500 px-4 py-2">
                                 Username
                             </th>
@@ -69,7 +75,10 @@ const MyBills = () => {
                         {bills.map((bill) => (
                             <tr className="text-center">
                                 <td className="border border-gray-500 px-4 py-2">
-                                    {bill.username || "No username provided!"}
+                                    {bill.title}
+                                </td>
+                                <td className="border border-gray-500 px-4 py-2">
+                                    {bill.username || "--"}
                                 </td>
                                 <td className="border border-gray-500 px-4 py-2">
                                     {bill.email}
@@ -78,18 +87,16 @@ const MyBills = () => {
                                     {bill.amount}
                                 </td>
                                 <td className="border border-gray-500 px-4 py-2">
-                                    {bill.address}
+                                    {bill.location || "--"}
                                 </td>
                                 <td className="border border-gray-500 px-4 py-2">
-                                    {bill.phone}
+                                    {bill.phone || "--"}
                                 </td>
                                 <td className="border border-gray-500 px-4 py-2">
                                     {bill.date}
                                 </td>
                                 <td className="flex gap-3 border border-gray-500 px-4 py-2">
-                                    <Button className="cursor-pointer border border-blue-800 hover:bg-blue-600 px-3 py-1.5 rounded-lg font-semibold transition-colors">
-                                        Update
-                                    </Button>
+                                    <UpdateBill bill={bill} />
                                     <Button
                                         onClick={() => handleDelete(bill._id)}
                                         className="cursor-pointer border border-red-800 hover:bg-red-600 px-3 py-1.5 rounded-lg font-semibold transition-colors"
