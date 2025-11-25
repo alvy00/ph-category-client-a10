@@ -1,8 +1,12 @@
 import { useRouteLoaderData } from "react-router";
 import BillCard from "./BillCard";
 
+import Loading from "../../components/Loading";
+
 const RecentBills = () => {
     const bills = useRouteLoaderData("Root");
+    const isLoading = navigation.state === "loading";
+    if (isLoading) return <Loading />;
     return (
         <div className="flex flex-col gap-5 p-5">
             <span className="font-bold text-4xl">Recent Bills</span>

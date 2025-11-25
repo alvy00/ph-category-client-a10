@@ -5,7 +5,7 @@ import electricity from "../../assets/elec.png";
 import gas from "../../assets/gas.png";
 import internet from "../../assets/int.png";
 import water from "../../assets/water.png";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const images = {
     electricity: electricity,
@@ -20,7 +20,7 @@ const BillCard = ({ bill }) => {
     const handleClick = () => {
         //toast(`${bill.title} was clicked`);
         window.scrollTo({ top: 0, behavior: "smooth" });
-        navigate(`/billdetails/${bill._id}`);
+        //navigate(`/billdetails/${bill._id}`);
     };
     return (
         <motion.div whileHover={{ scale: 1.05 }}>
@@ -50,12 +50,15 @@ const BillCard = ({ bill }) => {
                         <span className="text-2xl">৳</span>
                         {bill.amount || "--"}
                     </span>
-                    <button
-                        onClick={handleClick}
-                        className="btn btn-outline btn-info"
-                    >
-                        See Details
-                    </button>
+                    <Link to={`/billdetails/${bill._id}`}>
+                        {" "}
+                        <button
+                            onClick={handleClick}
+                            className="btn btn-outline btn-info"
+                        >
+                            See Details
+                        </button>
+                    </Link>
                 </div>
             </Card>
         </motion.div>

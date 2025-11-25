@@ -1,11 +1,12 @@
-import { useRouteLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import BillCard from "../RecentBills/BillCard";
 import FilterDropdown from "./FilterDropdown";
 import { useState } from "react";
 import AddBill from "./AddBill";
 
 const AllBills = () => {
-    const bills = useRouteLoaderData("Root");
+    const billsData = useLoaderData();
+    const [bills, setBills] = useState(billsData);
     const [filteredBills, setFilteredBills] = useState(bills);
 
     return (
@@ -16,7 +17,7 @@ const AllBills = () => {
                     {/* <button className="btn btn-outline btn-success">
                         Add Bill
                     </button> */}
-                    <AddBill />
+                    <AddBill setBills={setBills} />
                     <FilterDropdown
                         bills={bills}
                         setFilteredBills={setFilteredBills}

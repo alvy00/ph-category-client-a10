@@ -79,7 +79,9 @@ const Navbar = () => {
                                 <Link to="/bills">Bills</Link>
                             </li>
                             <li>
-                                <Link to="/mybills">My Pay Bills</Link>
+                                <Link to={`/mybills/${user.email}`}>
+                                    My Pay Bills
+                                </Link>
                             </li>
                             <li>
                                 <Link to="/faq">FAQ</Link>
@@ -150,7 +152,9 @@ const Navbar = () => {
                             <Link to="/bills">Bills</Link>
                         </li>
                         <li className=" rounded-sm">
-                            <Link to="/mybills">My Pay Bills</Link>
+                            <Link to={`/mybills/${user.email}`}>
+                                My Pay Bills
+                            </Link>
                         </li>
                         <li>
                             <Link to="/faq">FAQ</Link>

@@ -5,6 +5,7 @@ import banner3 from "../../assets/banner3.png";
 import banner4 from "../../assets/banner4.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Typewriter from "typewriter-effect";
 const Banner = () => {
     const slides = [
         {
@@ -54,7 +55,13 @@ const Banner = () => {
                         />
                         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-6 md:p-12 lg:p-24">
                             <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold mb-4">
-                                {slide.title}
+                                <Typewriter
+                                    options={{
+                                        strings: slide.title,
+                                        autoStart: true,
+                                        loop: true,
+                                    }}
+                                />
                             </h2>
                             <p className="text-white text-sm md:text-lg mb-6">
                                 {slide.subtitle}

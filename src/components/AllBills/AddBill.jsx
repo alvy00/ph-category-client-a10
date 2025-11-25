@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { useState } from "react";
+import axios from "axios";
+import { use, useState } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../provider/AuthProvider";
 
-const AddBill = () => {
+const AddBill = ({ setBills }) => {
+    const { user } = use(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const [category, setCategory] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const title = e.target.title.value;
@@ -16,8 +20,24 @@ const AddBill = () => {
         const img = e.target.photourl.value;
         const date = e.target.date.value;
         toast.success("New bill added successfully!");
+        const bill = {
+            title: title,
+            category: category,
+            email: user.email,
+            location: location,
+            description: des,
+            image: img,
+            date: date,
+            amount: Number(amount),
+        };
 
-        console.log(title, des, location, category, amount, img, date);
+        const res = await axios.post("http://localhost:3000/addbill", bill);
+        //console.log(title, des, location, category, amount, img, date);
+        //console.log(res.data);
+        bill._id = res.data._id;
+        setBills((prev) => [...prev, bill]);
+        //console.log(bill._id, res.data._id);
+        setIsOpen(false);
     };
 
     const handleCatChange = (e) => {
@@ -26,12 +46,14 @@ const AddBill = () => {
     };
     return (
         <>
-            <div
+            <Button
+                disabled={!user}
                 onClick={() => setIsOpen(true)}
-                className="btn btn-outline btn-success"
+                className="btn btn-outline btn-success data-disabled:opacity-50 data-disabled:cursor-not-allowed
+        data-disabled:bg-gray-500"
             >
                 Add Bill
-            </div>
+            </Button>
 
             <Dialog
                 open={isOpen}

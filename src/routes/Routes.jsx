@@ -17,17 +17,23 @@ const router = createBrowserRouter([
         path: "/",
         element: <RootLayout />,
         id: "Root",
-        loader: () => fetch("mockBills.json"),
+        loader: () => fetch("http://localhost:3000/recentbills"),
         children: [
             { index: true, element: <Home /> },
-            { path: "bills", element: <Bills /> },
             {
-                path: "mybills",
+                path: "bills",
+                element: <Bills />,
+                loader: () => fetch("http://localhost:3000/bills"),
+            },
+            {
+                path: "mybills/:email",
                 element: (
                     <PrivateRoute>
                         <MyBills />
                     </PrivateRoute>
                 ),
+                loader: ({ params }) =>
+                    fetch(`http://localhost:3000/mybills/${params.email}`),
             },
             {
                 path: "billdetails/:id",
@@ -36,6 +42,8 @@ const router = createBrowserRouter([
                         <BillDetail />
                     </PrivateRoute>
                 ),
+                loader: ({ params }) =>
+                    fetch(`http://localhost:3000/bill/${params.id}`),
             },
             { path: "profile", element: <Profile /> },
             { path: "faq", element: <FAQ /> },

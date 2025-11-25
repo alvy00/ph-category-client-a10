@@ -4,37 +4,55 @@ import { use, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
-const PayBill = ({ bill }) => {
+const PayBill = ({ bill, date }) => {
     const { user } = use(AuthContext);
     const { _id, amount } = bill;
 
     const [isOpen, setIsOpen] = useState(false);
 
     const navigate = useNavigate();
+    const now = new Date();
+    const currentDate = new Date(date);
+    //console.log(now, currentDate);
     const today = new Date().toISOString().split("T")[0];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const email = user.email;
         const location = e.target.address.value;
         const username = e.target.username.value;
         const phone = e.target.phone.value;
         toast.success("Bill Payment successfully!");
 
         //console.log(user.email, _id, amount, location, username, phone, today);
+        const bill = {
+            email: email,
+            _id: _id,
+            amount: amount,
+            location: location,
+            username: username,
+            phone: phone,
+            date: today,
+        };
+        const res = await axios.post("http://localhost:3000/paybill", bill);
+        console.log(res.data);
         setIsOpen(false);
         navigate("/");
     };
 
     return (
         <>
-            <div
+            <Button
+                disabled={now.getMonth() !== currentDate.getMonth()}
                 onClick={() => setIsOpen(true)}
-                className="cursor-pointer border border-gray-500 hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors"
+                className=" cursor-pointer border border-gray-500 hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors data-disabled:opacity-50         data-disabled:cursor-not-allowed
+        data-disabled:bg-gray-500"
             >
                 Pay Bill
-            </div>
+            </Button>
 
             <Dialog
                 open={isOpen}
@@ -191,7 +209,8 @@ const PayBill = ({ bill }) => {
 
                                     <Button
                                         type="submit"
-                                        className="mt-5 text-center justify-center inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700 cursor-pointer"
+                                        className="mt-5 text-center justify-center inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700 cursor-pointer 
+"
                                     >
                                         Pay
                                     </Button>
