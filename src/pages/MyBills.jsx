@@ -4,8 +4,10 @@ import { use, useEffect, useState } from "react";
 import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
-import { toast } from "react-toastify";
+import { jsPDF } from "jspdf";
+import { autoTable } from "jspdf-autotable";
 import UpdateBill from "../components/AllBills/UpdateBill";
+import DeleteBill from "../components/AllBills/DeleteBill";
 
 const MyBills = () => {
     const { user } = use(AuthContext);
@@ -14,7 +16,6 @@ const MyBills = () => {
     const [paidMoney, setPaidMoney] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     // console.log(bills);
-
     useEffect(() => {
         document.title = "GoBILLS | My Pay Bills";
     }, []);
@@ -33,15 +34,15 @@ const MyBills = () => {
         paidBills.map((bill) => setPaidMoney((prev) => prev + bill.amount));
     }, [paidBills]);
 
-    const handleDelete = async (id) => {
-        await axios.delete(`http://localhost:3000/deletebill/${id}`);
-        toast.success(`The bill was deleted!`);
+    const downdloadPDF = () => {
+        const doc = new jsPDF();
+        autoTable(doc, { html: "#my-bills" });
+        doc.save("table.pdf");
     };
-
     return (
         <>
-            <div className="min-w-5/12 flex justify-center items-center p-5">
-                <table className="min-w-full border">
+            <div className="flex flex-col gap-5 min-w-5/12 flex justify-center items-center p-5">
+                <table id="my-bills" className="min-w-full border">
                     <thead>
                         <tr className="bg-base-200">
                             <th className="border border-gray-500 px-4 py-2">
@@ -97,20 +98,15 @@ const MyBills = () => {
                                 </td>
                                 <td className="flex gap-3 border border-gray-500 px-4 py-2">
                                     <UpdateBill bill={bill} />
-                                    <Button
-                                        onClick={() => handleDelete(bill._id)}
-                                        className="cursor-pointer border border-red-800 hover:bg-red-600 px-3 py-1.5 rounded-lg font-semibold transition-colors"
-                                    >
-                                        Delete
-                                    </Button>
+                                    <DeleteBill id={bill._id} />
                                 </td>
                             </tr>
                         ))}
                         {bills.length < 1 && (
                             <tr className="border border-gray-500 px-4 py-2">
                                 <td
-                                    colSpan={7}
-                                    rowSpan={2}
+                                    colSpan={8}
+                                    rowSpan={1}
                                     className="text-center px-4 py-2"
                                 >
                                     No Bills Added Yet!
@@ -119,7 +115,7 @@ const MyBills = () => {
                         )}
                         <tr className="border border-gray-500 px-4 py-2">
                             <td
-                                colSpan={6}
+                                colSpan={7}
                                 className="border border-gray-500 text-center px-4 py-2"
                             >
                                 Total Bill Paid
@@ -128,12 +124,12 @@ const MyBills = () => {
                                 colSpan={1}
                                 className="border border-gray-500 text-center px-4 py-2"
                             >
-                                {bills.length}
+                                {paidBills.length}
                             </td>
                         </tr>
                         <tr className="border border-gray-500 px-4 py-2">
                             <td
-                                colSpan={6}
+                                colSpan={7}
                                 className="border border-gray-500 text-center px-4 py-2"
                             >
                                 Total Amount
@@ -147,6 +143,9 @@ const MyBills = () => {
                         </tr>
                     </tbody>
                 </table>
+                <Button onClick={downdloadPDF} className="btn outline-primary">
+                    Download Report
+                </Button>
             </div>
         </>
     );
