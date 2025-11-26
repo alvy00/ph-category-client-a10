@@ -11,7 +11,7 @@ const RecentBills = () => {
         const getRecentBills = async () => {
             try {
                 const res = await axios.get(
-                    "http://localhost:3000/recentbills"
+                    "https://ph-category-server-a10.vercel.app/recentbills"
                 );
                 setBills(res.data);
             } catch (err) {

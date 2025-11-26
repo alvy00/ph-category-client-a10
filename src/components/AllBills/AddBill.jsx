@@ -31,7 +31,10 @@ const AddBill = ({ setBills }) => {
             amount: Number(amount),
         };
 
-        const res = await axios.post("http://localhost:3000/addbill", bill);
+        const res = await axios.post(
+            "https://ph-category-server-a10.vercel.app/addbill",
+            bill
+        );
         //console.log(title, des, location, category, amount, img, date);
         //console.log(res.data);
         bill._id = res.data._id;

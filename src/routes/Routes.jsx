@@ -17,13 +17,15 @@ const router = createBrowserRouter([
         path: "/",
         element: <RootLayout />,
         id: "Root",
-        loader: () => fetch("http://localhost:3000/recentbills"),
+        loader: () =>
+            fetch("https://ph-category-server-a10.vercel.app/recentbills"),
         children: [
             { index: true, element: <Home /> },
             {
                 path: "bills",
                 element: <Bills />,
-                loader: () => fetch("http://localhost:3000/bills"),
+                loader: () =>
+                    fetch("https://ph-category-server-a10.vercel.app/bills"),
             },
             {
                 path: "mybills/:email",
@@ -33,7 +35,9 @@ const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
                 loader: ({ params }) =>
-                    fetch(`http://localhost:3000/mybills/${params.email}`),
+                    fetch(
+                        `https://ph-category-server-a10.vercel.app/mybills/${params.email}`
+                    ),
             },
             {
                 path: "billdetails/:id",
@@ -43,7 +47,9 @@ const router = createBrowserRouter([
                     </PrivateRoute>
                 ),
                 loader: ({ params }) =>
-                    fetch(`http://localhost:3000/bill/${params.id}`),
+                    fetch(
+                        `https://ph-category-server-a10.vercel.app/bill/${params.id}`
+                    ),
             },
             { path: "profile", element: <Profile /> },
             { path: "faq", element: <FAQ /> },

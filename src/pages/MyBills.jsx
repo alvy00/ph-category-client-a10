@@ -24,7 +24,7 @@ const MyBills = () => {
         const getPaidBills = async () => {
             if (!user?.email) return;
             const res = await axios.get(
-                `http://localhost:3000/mypaidbills?email=${user.email}`
+                `https://ph-category-server-a10.vercel.app/mypaidbills?email=${user.email}`
             );
             setPaidBills(res.data);
         };

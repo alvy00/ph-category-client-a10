@@ -37,7 +37,10 @@ const PayBill = ({ bill, date }) => {
             phone: phone,
             date: today,
         };
-        const res = await axios.post("http://localhost:3000/paybill", bill);
+        const res = await axios.post(
+            "https://ph-category-server-a10.vercel.app/paybill",
+            bill
+        );
         console.log(res.data);
         setIsOpen(false);
         navigate("/");

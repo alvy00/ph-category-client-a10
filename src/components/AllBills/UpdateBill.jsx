@@ -25,7 +25,10 @@ const UpdateBill = ({ bill }) => {
 
         console.log(amount, location, username, phone, updatedDate);
         const bill = { title, amount, location, username, phone, updatedDate };
-        await axios.patch(`http://localhost:3000/updatebill/${_id}`, bill);
+        await axios.patch(
+            `https://ph-category-server-a10.vercel.app/updatebill/${_id}`,
+            bill
+        );
         // console.log(res.data);
         setIsOpen(false);
     };

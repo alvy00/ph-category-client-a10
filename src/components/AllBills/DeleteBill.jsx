@@ -11,7 +11,9 @@ const DeleteBill = ({ id }) => {
 
     const handleDelete = async () => {
         setIsOpen(false);
-        await axios.delete(`http://localhost:3000/deletebill/${id}`);
+        await axios.delete(
+            `https://ph-category-server-a10.vercel.app/deletebill/${id}`
+        );
         toast.success(`The bill was deleted!`);
     };
 
