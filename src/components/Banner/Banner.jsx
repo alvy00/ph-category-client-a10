@@ -6,6 +6,7 @@ import banner4 from "../../assets/banner4.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Typewriter from "typewriter-effect";
+
 const Banner = () => {
     const slides = [
         {
@@ -33,6 +34,7 @@ const Banner = () => {
                 "Say goodbye to queues and long waiting times — paying bills has never been easier.",
         },
     ];
+
     const settings = {
         dots: false,
         infinite: true,
@@ -43,18 +45,46 @@ const Banner = () => {
         autoplay: true,
         autoplaySpeed: 7000,
     };
+
     return (
         <div className="w-full relative overflow-hidden">
             <Slider {...settings}>
                 {slides.map((slide, index) => (
-                    <div key={index} className="relative w-full h-full ">
+                    <div key={index} className="relative w-full">
                         <img
-                            className="w-full h-[50vh] object-cover"
+                            className="
+                                w-full 
+                                h-[35vh] 
+                                sm:h-[45vh] 
+                                md:h-[55vh] 
+                                lg:h-[65vh] 
+                                xl:h-[75vh]
+                                object-cover
+                            "
                             src={slide.img}
                             alt={`Slide ${index + 1}`}
                         />
-                        <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-6 md:p-12 lg:p-24">
-                            <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-bold mb-4">
+
+                        <div
+                            className="
+                                absolute inset-0 bg-black/40 
+                                flex flex-col justify-center
+
+                                px-4 py-6 
+                                sm:px-6 sm:py-10
+                                md:px-10 md:py-14
+                                lg:px-20 lg:py-16
+                            "
+                        >
+                            <h2
+                                className="
+                                    text-white font-bold mb-3 
+                                    text-xl 
+                                    sm:text-3xl 
+                                    md:text-4xl 
+                                    lg:text-5xl
+                                "
+                            >
                                 <Typewriter
                                     options={{
                                         strings: slide.title,
@@ -63,10 +93,32 @@ const Banner = () => {
                                     }}
                                 />
                             </h2>
-                            <p className="text-white text-sm md:text-lg mb-6">
+
+                            <p
+                                className="
+                                    text-white 
+                                    text-xs 
+                                    sm:text-sm 
+                                    md:text-base 
+                                    lg:text-lg 
+                                    mb-4
+                                "
+                            >
                                 {slide.subtitle}
                             </p>
-                            <button className="bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-md transition">
+
+                            <button
+                                className="
+                                    bg-cyan-500 hover:bg-cyan-600 
+                                    text-white 
+                                    px-4 py-2 
+                                    sm:px-5 sm:py-2 
+                                    rounded-md 
+                                    text-sm 
+                                    sm:text-base
+                                    transition
+                                "
+                            >
                                 Pay Now
                             </button>
                         </div>

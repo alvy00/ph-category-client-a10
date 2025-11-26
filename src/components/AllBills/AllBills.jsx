@@ -9,7 +9,7 @@ import Loading from "../../components/Loading";
 const AllBills = () => {
     const billsData = useLoaderData();
     const [search, setSearch] = useState("");
-    const [laoding, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [bills, setBills] = useState(billsData);
     const [filteredBills, setFilteredBills] = useState(bills);
 
@@ -58,15 +58,22 @@ const AllBills = () => {
                     <FilterDropdown
                         bills={bills}
                         setFilteredBills={setFilteredBills}
+                        setLoading={setLoading}
                     />
                 </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-5 pl-5 justify-center items-center">
-                {laoding ? (
-                    <Loading />
+            <div className="w-full min-h-full">
+                {loading ? (
+                    <div className="flex justify-center items-center w-full h-[300px]">
+                        <Loading />
+                    </div>
                 ) : (
-                    filteredBills.map((bill) => <BillCard bill={bill} />)
+                    <div className="grid grid-cols-3 gap-5 pl-5 w-full">
+                        {filteredBills.map((bill) => (
+                            <BillCard bill={bill} key={bill._id} />
+                        ))}
+                    </div>
                 )}
             </div>
         </div>

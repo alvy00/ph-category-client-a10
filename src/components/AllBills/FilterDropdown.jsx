@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const FilterDropdown = ({ bills, setFilteredBills }) => {
+const FilterDropdown = ({ bills, setFilteredBills, setLoading }) => {
     const [filter, setFilter] = useState("All");
 
     // WE GET THE FILTERED BILLS FROM THE BACKEND USING THIS
@@ -13,6 +14,7 @@ const FilterDropdown = ({ bills, setFilteredBills }) => {
     };
 
     useEffect(() => {
+        setLoading(true);
         setFilteredBills(
             bills.filter((bill) => {
                 if (filter.toLowerCase() === "all") return true;
@@ -20,6 +22,10 @@ const FilterDropdown = ({ bills, setFilteredBills }) => {
                 return bill.category.toLowerCase() === filter.toLowerCase();
             })
         );
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 300);
         //console.log(filter);
     }, [bills, filter, setFilteredBills]);
     return (

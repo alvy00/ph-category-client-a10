@@ -18,43 +18,44 @@ const BillCard = ({ bill }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        //toast(`${bill.title} was clicked`);
         window.scrollTo({ top: 0, behavior: "smooth" });
-        //navigate(`/billdetails/${bill._id}`);
     };
+
     return (
         <motion.div whileHover={{ scale: 1.05 }}>
             <Card
-                className="max-w-sm"
+                className="max-w-full sm:max-w-xs md:max-w-sm lg:max-w-md"
                 imgAlt="alt picture of categories"
                 imgSrc={images[bill.category?.toLowerCase()]}
             >
                 <a href="#">
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
                         {bill.title || "--"}
                     </h5>
                 </a>
-                <div className="">
-                    <span className="mr-2 rounded bg-cyan-100 px-2.5 py-0.5 text-xs font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800 uppercase">
+                <div className="flex flex-wrap gap-1 mt-2">
+                    <span className="rounded bg-cyan-100 px-2 py-0.5 text-xs sm:text-sm font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800 uppercase">
                         {bill.category || "--"}
                     </span>
-                    <span className="mr-2 rounded bg-base-100 px-2.5 py-0.5 text-xs font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800">
+                    <span className="rounded bg-base-100 px-2 py-0.5 text-xs sm:text-sm font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800">
                         {bill.date || "--"}
                     </span>
-                    <span className="mr-2 rounded bg-base-100 px-2.5 py-0.5 text-xs font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800 uppercase">
+                    <span className="rounded bg-base-100 px-2 py-0.5 text-xs sm:text-sm font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800 uppercase">
                         {bill.location || "--"}
                     </span>
                 </div>
-                <div className="flex items-center justify-between">
-                    <span className=" dark:text-gray-500 text-gray-600">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3">
+                    <span className="text-gray-600 dark:text-gray-500 text-lg sm:text-xl font-medium">
                         <span className="text-2xl">৳</span>
                         {bill.amount || "--"}
                     </span>
-                    <Link to={`/billdetails/${bill._id}`}>
-                        {" "}
+                    <Link
+                        to={`/billdetails/${bill._id}`}
+                        className="mt-2 sm:mt-0"
+                    >
                         <button
                             onClick={handleClick}
-                            className="btn btn-outline btn-info"
+                            className="btn btn-outline btn-info text-sm sm:text-base"
                         >
                             See Details
                         </button>
