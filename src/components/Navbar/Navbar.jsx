@@ -78,6 +78,9 @@ const Navbar = () => {
                                                 Logout
                                             </button>
                                         </li>
+                                        <li>
+                                            <DarkModeToggle />
+                                        </li>
                                     </>
                                 ) : (
                                     <>
@@ -91,6 +94,9 @@ const Navbar = () => {
                                             >
                                                 Register
                                             </Link>
+                                        </li>
+                                        <li>
+                                            <DarkModeToggle />
                                         </li>
                                     </>
                                 )}
@@ -133,6 +139,9 @@ const Navbar = () => {
                             </li>
                             <li className="border border-cyan-600 rounded-md px-2 py-1 hover:bg-cyan-500 transition">
                                 <Link to="/register">Register</Link>
+                            </li>
+                            <li className="items-center">
+                                <DarkModeToggle />
                             </li>
                         </ul>
                     ) : (
