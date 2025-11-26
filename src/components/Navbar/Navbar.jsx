@@ -5,6 +5,7 @@ import { use, useState } from "react";
 import { toast } from "react-toastify";
 import profileIcon from "../../assets/profile.png";
 import { AuthContext } from "../../provider/AuthProvider";
+import DarkModeToggle from "./components/DarkToggle";
 
 const Navbar = () => {
     const { user, loading, logOut } = use(AuthContext);
@@ -161,6 +162,9 @@ const Navbar = () => {
                             </li>
                             <li className="border border-red-600 rounded-md px-2 py-1 hover:bg-red-500 transition">
                                 <button onClick={handleLogout}>Logout</button>
+                            </li>
+                            <li>
+                                <DarkModeToggle />
                             </li>
                         </ul>
                     )}

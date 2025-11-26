@@ -117,6 +117,8 @@ const Banner = () => {
                                     text-sm 
                                     sm:text-base
                                     transition
+
+                                    w-2/12
                                 "
                             >
                                 Pay Now
