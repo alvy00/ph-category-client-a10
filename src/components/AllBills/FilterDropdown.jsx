@@ -1,8 +1,13 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const FilterDropdown = ({ bills, setFilteredBills }) => {
     const [filter, setFilter] = useState("All");
 
+    // WE GET THE FILTERED BILLS FROM THE BACKEND USING THIS
+    const getFilteredBills = async () => {
+        await axios.get("http://localhost:3000/getfiltered");
+    };
     const handleFilterChange = (e) => {
         setFilter(e.target.value);
     };
