@@ -24,9 +24,10 @@ const MyBills = () => {
         const getPaidBills = async () => {
             if (!user?.email) return;
             const res = await axios.get(
-                `https://ph-category-server-a10.up.railway.app/mypaidbills?email=${user.email}`
+                `https://ph-category-server-a10.onrender.com/mypaidbills?email=${user.email}`
             );
-            setPaidBills(res.data);
+            setPaidBills(res.data || []);
+            console.log(res.data);
         };
         getPaidBills();
     }, [user]);
