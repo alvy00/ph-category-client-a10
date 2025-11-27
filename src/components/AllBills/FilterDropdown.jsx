@@ -8,7 +8,7 @@ const FilterDropdown = ({ bills, setFilteredBills, setLoading }) => {
     // WE GET THE FILTERED BILLS FROM THE BACKEND USING THIS
     const getFilteredBills = async () => {
         await axios.get(
-            "https://ph-category-server-a10.up.railway.app/getfiltered"
+            "https://ph-category-server-a10.onrender.com/getfiltered"
         );
     };
     const handleFilterChange = (e) => {

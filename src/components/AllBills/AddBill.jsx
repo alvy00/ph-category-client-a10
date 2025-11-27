@@ -32,7 +32,7 @@ const AddBill = ({ setBills }) => {
         };
 
         const res = await axios.post(
-            "https://ph-category-server-a10.up.railway.app/addbill",
+            "https://ph-category-server-a10.onrender.com/addbill",
             bill
         );
         //console.log(title, des, location, category, amount, img, date);

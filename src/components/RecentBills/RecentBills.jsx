@@ -11,7 +11,7 @@ const RecentBills = () => {
         const getRecentBills = async () => {
             try {
                 const res = await axios.get(
-                    "https://ph-category-server-a10.up.railway.app/recentbills"
+                    "https://ph-category-server-a10.onrender.com/recentbills"
                 );
                 setBills(res.data);
             } catch (err) {
