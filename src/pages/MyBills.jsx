@@ -24,7 +24,7 @@ const MyBills = () => {
         const getPaidBills = async () => {
             if (!user?.email) return;
             const res = await axios.get(
-                `https://ph-category-server-a10.vercel.app/mypaidbills?email=${user.email}`
+                `https://ph-category-server-a10.up.railway.app/mypaidbills?email=${user.email}`
             );
             setPaidBills(res.data);
         };
@@ -32,7 +32,10 @@ const MyBills = () => {
     }, [user]);
 
     useEffect(() => {
-        const total = paidBills.reduce((acc, bill) => acc + bill.amount, 0);
+        const total = paidBills.reduce(
+            (acc, bill) => acc + Number(bill.amount),
+            0
+        );
         setPaidMoney(total);
     }, [paidBills]);
 
