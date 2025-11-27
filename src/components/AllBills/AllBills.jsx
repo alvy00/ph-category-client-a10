@@ -11,7 +11,7 @@ const AllBills = () => {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
     const [bills, setBills] = useState(billsData);
-    const [filteredBills, setFilteredBills] = useState(bills);
+    const [filteredBills, setFilteredBills] = useState(bills || []);
 
     useEffect(() => {
         setLoading(true);
