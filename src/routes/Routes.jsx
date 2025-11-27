@@ -18,14 +18,16 @@ const router = createBrowserRouter([
         element: <RootLayout />,
         id: "Root",
         loader: () =>
-            fetch("https://ph-category-server-a10.vercel.app/recentbills"),
+            fetch("https://ph-category-server-a10.up.railway.app/recentbills"),
         children: [
             { index: true, element: <Home /> },
             {
                 path: "bills",
                 element: <Bills />,
                 loader: () =>
-                    fetch("https://ph-category-server-a10.vercel.app/bills"),
+                    fetch(
+                        "https://ph-category-server-a10.up.railway.app/bills"
+                    ),
             },
             {
                 path: "mybills/:email",
@@ -36,7 +38,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `https://ph-category-server-a10.vercel.app/mybills/${params.email}`
+                        `https://ph-category-server-a10.up.railway.app/mybills/${params.email}`
                     ),
             },
             {
@@ -48,7 +50,7 @@ const router = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `https://ph-category-server-a10.vercel.app/bill/${params.id}`
+                        `https://ph-category-server-a10.up.railway.app/bill/${params.id}`
                     ),
             },
             { path: "profile", element: <Profile /> },

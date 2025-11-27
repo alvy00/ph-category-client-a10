@@ -26,7 +26,7 @@ const UpdateBill = ({ bill }) => {
         console.log(amount, location, username, phone, updatedDate);
         const bill = { title, amount, location, username, phone, updatedDate };
         await axios.patch(
-            `https://ph-category-server-a10.vercel.app/updatebill/${_id}`,
+            `https://ph-category-server-a10.up.railway.app/updatebill/${_id}`,
             bill
         );
         // console.log(res.data);

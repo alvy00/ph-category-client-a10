@@ -12,7 +12,7 @@ const DeleteBill = ({ id }) => {
     const handleDelete = async () => {
         setIsOpen(false);
         await axios.delete(
-            `https://ph-category-server-a10.vercel.app/deletebill/${id}`
+            `https://ph-category-server-a10.up.railway.app/deletebill/${id}`
         );
         toast.success(`The bill was deleted!`);
     };

@@ -38,7 +38,7 @@ const PayBill = ({ bill, date }) => {
             date: today,
         };
         const res = await axios.post(
-            "https://ph-category-server-a10.vercel.app/paybill",
+            "https://ph-category-server-a10.up.railway.app/paybill",
             bill
         );
         console.log(res.data);

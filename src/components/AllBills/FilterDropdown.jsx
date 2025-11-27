@@ -8,7 +8,7 @@ const FilterDropdown = ({ bills, setFilteredBills, setLoading }) => {
     // WE GET THE FILTERED BILLS FROM THE BACKEND USING THIS
     const getFilteredBills = async () => {
         await axios.get(
-            "https://ph-category-server-a10.vercel.app/getfiltered"
+            "https://ph-category-server-a10.up.railway.app/getfiltered"
         );
     };
     const handleFilterChange = (e) => {
