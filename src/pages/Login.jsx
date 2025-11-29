@@ -123,7 +123,7 @@ const Login = () => {
                     Don't have an account?{" "}
                     <span
                         className="font-bold cursor-pointer text-blue-800"
-                        onClick={() => navigate("/signup")}
+                        onClick={() => navigate("/register")}
                     >
                         Register
                     </span>
