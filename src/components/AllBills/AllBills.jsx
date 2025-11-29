@@ -26,11 +26,14 @@ const AllBills = () => {
     }, [bills, search]);
 
     return (
-        <div className="flex flex-col gap-5 p-5 min-w-11/12">
-            <div className="flex justify-between ">
-                <span className="font-bold text-4xl">All Bills</span>
-                <div className="flex gap-2 justify-between items-center">
-                    <label className="input">
+        <div className="flex flex-col gap-5 p-5 w-full">
+            <div className="flex flex-col md:flex-row md:justify-between gap-4">
+                <span className="font-bold text-2xl md:text-4xl">
+                    All Bills
+                </span>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-between items-center">
+                    <label className="input w-full sm:w-auto">
                         <svg
                             className="h-[1em] opacity-50"
                             xmlns="http://www.w3.org/2000/svg"
@@ -51,10 +54,13 @@ const AllBills = () => {
                             type="search"
                             required
                             placeholder="Search"
+                            className="w-full"
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </label>
+
                     <AddBill setBills={setBills} />
+
                     <FilterDropdown
                         bills={bills}
                         setFilteredBills={setFilteredBills}
@@ -69,7 +75,16 @@ const AllBills = () => {
                         <Loading />
                     </div>
                 ) : (
-                    <div className="grid grid-cols-3 gap-5 pl-5 w-full">
+                    <div
+                        className="
+                        grid 
+                        grid-cols-1 
+                        sm:grid-cols-2 
+                        lg:grid-cols-3 
+                        gap-5 
+                        w-full
+                    "
+                    >
                         {filteredBills.map((bill) => (
                             <BillCard bill={bill} key={bill._id} />
                         ))}
