@@ -17,8 +17,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <RootLayout />,
         id: "Root",
-        loader: () =>
-            fetch("https://ph-category-server-a10.onrender.com/recentbills"),
         children: [
             { index: true, element: <Home /> },
             {
