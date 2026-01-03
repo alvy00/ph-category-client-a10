@@ -1,67 +1,79 @@
 /* eslint-disable no-unused-vars */
-import { Card } from "flowbite-react";
 import { motion } from "motion/react";
 import electricity from "../../assets/elec.png";
 import gas from "../../assets/gas.png";
 import internet from "../../assets/int.png";
 import water from "../../assets/water.png";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 const images = {
-    electricity: electricity,
-    gas: gas,
-    internet: internet,
-    water: water,
+    electricity,
+    gas,
+    internet,
+    water,
 };
 
 const BillCard = ({ bill }) => {
-    const navigate = useNavigate();
-
     const handleClick = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     return (
-        <motion.div whileHover={{ scale: 1.05 }}>
-            <Card
-                className="max-w-full sm:max-w-xs md:max-w-sm lg:max-w-md"
-                imgAlt="alt picture of categories"
-                imgSrc={images[bill.category?.toLowerCase()]}
-            >
-                <a href="#">
-                    <h5 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        <motion.div whileHover={{ scale: 1.05 }} className="h-full">
+            <div className="card h-full bg-base-200 border border-base-300 shadow-md hover:shadow-xl hover:ring-2 hover:ring-primary/20 transition max-w-full sm:max-w-xs md:max-w-sm lg:max-w-md">
+                {/* Image */}
+                <figure className="h-40 overflow-hidden">
+                    <img
+                        src={images[bill.category?.toLowerCase()]}
+                        alt="Bill category"
+                        className="h-full w-full object-cover"
+                    />
+                </figure>
+
+                {/* Body */}
+                <div className="card-body p-6 flex flex-col">
+                    {/* Title (clamped) */}
+                    <h5 className="text-lg sm:text-xl md:text-2xl font-semibold line-clamp-2">
                         {bill.title || "--"}
                     </h5>
-                </a>
-                <div className="flex flex-wrap gap-1 mt-2">
-                    <span className="rounded bg-cyan-100 px-2 py-0.5 text-xs sm:text-sm font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800 uppercase">
-                        {bill.category || "--"}
-                    </span>
-                    <span className="rounded bg-base-100 px-2 py-0.5 text-xs sm:text-sm font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800">
-                        {bill.date || "--"}
-                    </span>
-                    <span className="rounded bg-base-100 px-2 py-0.5 text-xs sm:text-sm font-semibold text-cyan-800 dark:bg-base-100 dark:text-cyan-800 uppercase">
-                        {bill.location || "--"}
-                    </span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3">
-                    <span className="text-gray-600 dark:text-gray-500 text-lg sm:text-xl font-medium">
-                        <span className="text-2xl">৳</span>
-                        {bill.amount || "--"}
-                    </span>
-                    <Link
-                        to={`/billdetails/${bill._id}`}
-                        className="mt-2 sm:mt-0"
-                    >
-                        <button
-                            onClick={handleClick}
-                            className="btn btn-outline btn-info text-sm sm:text-base"
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mt-2">
+                        <span className="badge badge-info badge-outline uppercase">
+                            {bill.category || "--"}
+                        </span>
+                        <span className="badge badge-outline">
+                            {bill.date || "--"}
+                        </span>
+                        <span className="badge badge-outline uppercase">
+                            {bill.location || "--"}
+                        </span>
+                    </div>
+
+                    {/* Spacer pushes bottom content down */}
+                    <div className="grow" />
+
+                    {/* Amount + Action */}
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4">
+                        <span className="text-lg sm:text-xl font-semibold">
+                            <span className="text-2xl mr-1">৳</span>
+                            {bill.amount || "--"}
+                        </span>
+
+                        <Link
+                            to={`/billdetails/${bill._id}`}
+                            className="mt-3 sm:mt-0"
                         >
-                            See Details
-                        </button>
-                    </Link>
+                            <button
+                                onClick={handleClick}
+                                className="btn btn-outline btn-info btn-sm sm:btn-md"
+                            >
+                                See Details
+                            </button>
+                        </Link>
+                    </div>
                 </div>
-            </Card>
+            </div>
         </motion.div>
     );
 };

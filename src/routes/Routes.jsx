@@ -11,6 +11,7 @@ import NotFound from "../pages/NotFound";
 import PrivateRoute from "../provider/PrivateRoute";
 import BillDetail from "../pages/BillDetail";
 import FAQ from "../pages/FAQ";
+import Services from "../pages/Services";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
             },
             { path: "profile", element: <Profile /> },
             { path: "faq", element: <FAQ /> },
+            { path: "services", element: <Services /> },
             {
                 path: "auth",
                 element: <AuthLayout />,

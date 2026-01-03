@@ -30,8 +30,13 @@ const RecentBills = () => {
             <span className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 Recent Bills
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
-                {bills.slice(0, 6).map((bill) => (
+            <div
+                className="grid grid-cols-1 
+                        sm:grid-cols-2 
+                        md:grid-cols-3 
+                        lg:grid-cols-4 gap-4 sm:gap-5"
+            >
+                {bills.slice(0, 8).map((bill) => (
                     <BillCard key={bill._id} bill={bill} />
                 ))}
             </div>

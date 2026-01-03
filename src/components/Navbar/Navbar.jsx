@@ -63,6 +63,9 @@ const Navbar = () => {
                                     </li>
                                 )}
                                 <li>
+                                    <Link to="/services">Services</Link>
+                                </li>
+                                <li>
                                     <Link to="/faq">FAQ</Link>
                                 </li>
                                 {user ? (
@@ -132,6 +135,9 @@ const Navbar = () => {
                                 <Link to="/bills">Bills</Link>
                             </li>
                             <li>
+                                <Link to="/services">Services</Link>
+                            </li>
+                            <li>
                                 <Link to="/faq">FAQ</Link>
                             </li>
                             <li className="bg-gray-800 rounded-md px-2 py-1">
@@ -156,6 +162,9 @@ const Navbar = () => {
                                 <Link to={`/mybills/${user.email}`}>
                                     My Pay Bills
                                 </Link>
+                            </li>
+                            <li>
+                                <Link to="/services">Services</Link>
                             </li>
                             <li>
                                 <Link to="/faq">FAQ</Link>
