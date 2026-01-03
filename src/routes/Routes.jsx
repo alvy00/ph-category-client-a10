@@ -40,11 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "billdetails/:id",
-                element: (
-                    <PrivateRoute>
-                        <BillDetail />
-                    </PrivateRoute>
-                ),
+                element: <BillDetail />,
                 loader: ({ params }) =>
                     fetch(
                         `https://ph-category-server-a10.onrender.com/bill/${params.id}`

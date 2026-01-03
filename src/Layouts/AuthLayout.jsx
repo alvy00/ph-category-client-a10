@@ -4,7 +4,9 @@ import { Outlet } from "react-router";
 const AuthLayout = () => {
     return (
         <>
-            <Outlet />
+            <div className="flex justify-center items-center">
+                <Outlet />
+            </div>
         </>
     );
 };

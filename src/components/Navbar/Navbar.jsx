@@ -127,7 +127,7 @@ const Navbar = () => {
                             <span className="loading loading-spinner text-warning"></span>
                         </div>
                     ) : !user ? (
-                        <ul className="menu menu-horizontal px-3 text-base gap-4">
+                        <ul className="menu menu-horizontal px-3 text-base gap-4 items-center">
                             <li>
                                 <Link to="/">Home</Link>
                             </li>
@@ -140,11 +140,21 @@ const Navbar = () => {
                             <li>
                                 <Link to="/faq">FAQ</Link>
                             </li>
-                            <li className="bg-gray-800 rounded-md px-2 py-1">
-                                <Link to="/login">Login</Link>
+                            <li>
+                                <Link
+                                    className="btn border border-base-300 rounded-md px-6 py-1 hover:bg-base-300 transition"
+                                    to="/login"
+                                >
+                                    Login
+                                </Link>
                             </li>
-                            <li className="border border-cyan-600 rounded-md px-2 py-1 hover:bg-cyan-500 transition">
-                                <Link to="/register">Register</Link>
+                            <li>
+                                <Link
+                                    className="btn border border-cyan-600 rounded-md px-6 py-1 hover:bg-cyan-500 transition"
+                                    to="/register"
+                                >
+                                    Register
+                                </Link>
                             </li>
                             <li className="items-center">
                                 <DarkModeToggle />
