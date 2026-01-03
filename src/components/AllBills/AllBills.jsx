@@ -5,6 +5,7 @@ import FilterDropdown from "./FilterDropdown";
 import { useEffect, useState } from "react";
 import AddBill from "./AddBill";
 import Loading from "../../components/Loading";
+import CardSkeleton from "./CardSkeleton";
 
 const AllBills = () => {
     const billsData = useLoaderData();
@@ -70,27 +71,15 @@ const AllBills = () => {
             </div>
 
             <div className="w-full min-h-full">
-                {loading ? (
-                    <div className="flex justify-center items-center w-full h-[300px]">
-                        <Loading />
-                    </div>
-                ) : (
-                    <div
-                        className="
-                        grid 
-                        grid-cols-1 
-                        sm:grid-cols-2 
-                        md:grid-cols-3 
-                        lg:grid-cols-4
-                        gap-5 
-                        w-full
-                    "
-                    >
-                        {filteredBills.map((bill) => (
-                            <BillCard bill={bill} key={bill._id} />
-                        ))}
-                    </div>
-                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full">
+                    {loading
+                        ? Array.from({ length: 8 }).map((_, idx) => (
+                              <CardSkeleton key={idx} />
+                          ))
+                        : filteredBills.map((bill) => (
+                              <BillCard bill={bill} key={bill._id} />
+                          ))}
+                </div>
             </div>
         </div>
     );
