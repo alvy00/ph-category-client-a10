@@ -7,6 +7,7 @@ const Login = () => {
     const { user, setUser, signIn, googleSignIn, setLoading } =
         use(AuthContext);
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
     //console.log(location);
@@ -33,6 +34,11 @@ const Login = () => {
         } catch (error) {
             toast.error(error.code);
         }
+    };
+
+    const demoLogin = async (e) => {
+        setEmail("user1@gmail.com");
+        setPassword("Ab12345678");
     };
 
     const handleGoogleLogin = async (e) => {
@@ -64,9 +70,8 @@ const Login = () => {
                     type="email"
                     className="input"
                     placeholder="Email"
-                    onChange={(e) => {
-                        setEmail(e.target.value);
-                    }}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
 
@@ -76,6 +81,8 @@ const Login = () => {
                     type="password"
                     className="input"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                 />
                 <span
@@ -86,6 +93,13 @@ const Login = () => {
                 </span>
 
                 <button className="btn btn-neutral mt-4">Login</button>
+                <button
+                    type="button"
+                    onClick={demoLogin}
+                    className="btn btn-base border border-cyan-200 mt-4"
+                >
+                    Demo Login
+                </button>
                 <button
                     onClick={handleGoogleLogin}
                     className="btn bg-white text-black border-[#e5e5e5] mt-2"

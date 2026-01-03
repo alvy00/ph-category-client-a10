@@ -12,6 +12,8 @@ import PrivateRoute from "../provider/PrivateRoute";
 import BillDetail from "../pages/BillDetail";
 import FAQ from "../pages/FAQ";
 import Services from "../pages/Services";
+import DashboardLayout from "../Layouts/DashboardLayout";
+import DashboardHome from "../pages/DashboardHome";
 
 const router = createBrowserRouter([
     {
@@ -46,7 +48,6 @@ const router = createBrowserRouter([
                         `https://ph-category-server-a10.onrender.com/bill/${params.id}`
                     ),
             },
-            { path: "profile", element: <Profile /> },
             { path: "faq", element: <FAQ /> },
             { path: "services", element: <Services /> },
             {
@@ -60,6 +61,14 @@ const router = createBrowserRouter([
                     { path: "register", element: <Register /> },
                 ],
             },
+        ],
+    },
+    {
+        path: "dashboard",
+        element: <DashboardLayout />,
+        children: [
+            { index: true, element: <DashboardHome /> },
+            { path: "profile", element: <Profile /> },
         ],
     },
     { path: "login", loader: () => redirect("/auth/login") },

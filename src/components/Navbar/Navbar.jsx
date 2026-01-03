@@ -71,7 +71,9 @@ const Navbar = () => {
                                 {user ? (
                                     <>
                                         <li>
-                                            <Link to="/profile">Profile</Link>
+                                            <Link to="/dashboard/profile">
+                                                Profile
+                                            </Link>
                                         </li>
                                         <li>
                                             <button
@@ -179,17 +181,46 @@ const Navbar = () => {
                             <li>
                                 <Link to="/faq">FAQ</Link>
                             </li>
-                            <li>
-                                <Link to="/profile">
-                                    <img
-                                        className="h-10 w-10 rounded-full"
-                                        src={profileIcon}
-                                        alt="profile icon"
-                                    />
-                                </Link>
-                            </li>
-                            <li className="border border-red-600 rounded-md px-2 py-1 hover:bg-red-500 transition">
-                                <button onClick={handleLogout}>Logout</button>
+                            <li className="dropdown dropdown-center">
+                                <div
+                                    tabIndex={0}
+                                    role="button"
+                                    className="btn btn-ghost btn-circle avatar"
+                                >
+                                    <div className="w-10 rounded-full">
+                                        <img src={profileIcon} alt="profile" />
+                                    </div>
+                                </div>
+
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52 gap-2"
+                                >
+                                    <li>
+                                        <Link
+                                            className="btn btn-outline"
+                                            to="/dashboard/profile"
+                                        >
+                                            Profile
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            className="btn btn-outline"
+                                            to="/dashboard"
+                                        >
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="text-red-600 btn btn-outline"
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <DarkModeToggle />
