@@ -14,6 +14,7 @@ import FAQ from "../pages/FAQ";
 import Services from "../pages/Services";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import DashboardHome from "../pages/DashboardHome";
+import AddBill from "../pages/AddBill";
 
 const router = createBrowserRouter([
     {
@@ -27,18 +28,6 @@ const router = createBrowserRouter([
                 element: <Bills />,
                 loader: () =>
                     fetch("https://ph-category-server-a10.onrender.com/bills"),
-            },
-            {
-                path: "mybills/:email",
-                element: (
-                    <PrivateRoute>
-                        <MyBills />
-                    </PrivateRoute>
-                ),
-                loader: ({ params }) =>
-                    fetch(
-                        `https://ph-category-server-a10.onrender.com/mybills/${params.email}`
-                    ),
             },
             {
                 path: "billdetails/:id",
@@ -65,10 +54,23 @@ const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <DashboardLayout />,
+        element: (
+            <PrivateRoute>
+                <DashboardLayout />
+            </PrivateRoute>
+        ),
         children: [
             { index: true, element: <DashboardHome /> },
             { path: "profile", element: <Profile /> },
+            { path: "addbill", element: <AddBill /> },
+            {
+                path: "mybills/:email",
+                element: <MyBills />,
+                loader: ({ params }) =>
+                    fetch(
+                        `https://ph-category-server-a10.onrender.com/mybills/${params.email}`
+                    ),
+            },
         ],
     },
     { path: "login", loader: () => redirect("/auth/login") },

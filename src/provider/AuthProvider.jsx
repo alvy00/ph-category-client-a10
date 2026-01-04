@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useEffect, useState } from "react";
 import {
     createUserWithEmailAndPassword,
@@ -7,6 +8,7 @@ import {
     signInWithPopup,
     signOut,
     onAuthStateChanged,
+    updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 
@@ -26,6 +28,14 @@ const AuthProvider = ({ children }) => {
     const signIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
+    };
+
+    const updateUser = async (name, url) => {
+        setLoading(true);
+        return await updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: url,
+        });
     };
 
     const googleSignIn = async () => {
@@ -59,6 +69,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         googleSignIn,
+        updateUser,
         logOut,
         loading,
         setLoading,

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, Outlet } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 const DashboardLayout = () => {
+    const { user } = use(AuthContext);
     return (
         <div className="drawer lg:drawer-open">
             {/* Drawer Toggle */}
@@ -138,6 +140,68 @@ const DashboardLayout = () => {
                                 </svg>
                                 <span className="is-drawer-close:hidden">
                                     Dashboard
+                                </span>
+                            </Link>
+                        </li>
+
+                        {/* My Bills */}
+                        <li>
+                            <Link
+                                to={`/dashboard/mybills/${user.email}`}
+                                className="flex items-center gap-3 px-4 py-3 rounded-lg
+                    hover:bg-base-300
+                    is-drawer-close:tooltip
+                    is-drawer-close:tooltip-right"
+                                data-tip="My Bills"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M9 17v-2h6v2m-6-4v-2h6v2m-6-4V7h6v2m-7 10H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-7z"
+                                    />
+                                </svg>
+
+                                <span className="is-drawer-close:hidden">
+                                    My Bills
+                                </span>
+                            </Link>
+                        </li>
+
+                        {/* Add Bill */}
+                        <li>
+                            <Link
+                                to="/dashboard/addbill"
+                                className="flex items-center gap-3 px-4 py-3 rounded-lg
+                                            hover:bg-base-300
+                                            is-drawer-close:tooltip
+                                            is-drawer-close:tooltip-right"
+                                data-tip="Add Bill"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-5 h-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M12 5v14M5 12h14"
+                                    />
+                                </svg>
+
+                                <span className="is-drawer-close:hidden">
+                                    Add Bill
                                 </span>
                             </Link>
                         </li>

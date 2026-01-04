@@ -57,7 +57,9 @@ const Navbar = () => {
                                 </li>
                                 {user && (
                                     <li>
-                                        <Link to={`/mybills/${user.email}`}>
+                                        <Link
+                                            to={`/dashboard/mybills/${user.email}`}
+                                        >
                                             My Pay Bills
                                         </Link>
                                     </li>
@@ -171,7 +173,7 @@ const Navbar = () => {
                                 <Link to="/bills">Bills</Link>
                             </li>
                             <li>
-                                <Link to={`/mybills/${user.email}`}>
+                                <Link to={`/dashboard/mybills/${user.email}`}>
                                     My Pay Bills
                                 </Link>
                             </li>

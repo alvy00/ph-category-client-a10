@@ -3,16 +3,17 @@ import { useLoaderData } from "react-router";
 import BillCard from "../RecentBills/BillCard";
 import FilterDropdown from "./FilterDropdown";
 import { useEffect, useState } from "react";
-import AddBill from "./AddBill";
-import Loading from "../../components/Loading";
 import CardSkeleton from "./CardSkeleton";
+
+const ITEMS_PER_PAGE = 12;
 
 const AllBills = () => {
     const billsData = useLoaderData();
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
-    const [bills, setBills] = useState(billsData);
+    const [bills] = useState(billsData);
     const [filteredBills, setFilteredBills] = useState(bills || []);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         setLoading(true);
@@ -22,12 +23,22 @@ const AllBills = () => {
             );
 
             setFilteredBills(filtered);
+            setCurrentPage(1); // reset page on search/filter
             setLoading(false);
         }, 300);
     }, [bills, search]);
 
+    // Pagination calculations
+    const totalPages = Math.ceil(filteredBills.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginatedBills = filteredBills.slice(
+        startIndex,
+        startIndex + ITEMS_PER_PAGE
+    );
+
     return (
         <div className="flex flex-col gap-5 p-5 w-full">
+            {/* Header */}
             <div className="flex flex-col md:flex-row md:justify-between gap-4">
                 <span className="font-bold text-2xl md:text-4xl">
                     All Bills
@@ -53,15 +64,11 @@ const AllBills = () => {
                         </svg>
                         <input
                             type="search"
-                            required
                             placeholder="Search"
                             className="w-full"
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </label>
-
-                    <AddBill setBills={setBills} />
-
                     <FilterDropdown
                         bills={bills}
                         setFilteredBills={setFilteredBills}
@@ -70,17 +77,51 @@ const AllBills = () => {
                 </div>
             </div>
 
-            <div className="w-full min-h-full">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full">
-                    {loading
-                        ? Array.from({ length: 8 }).map((_, idx) => (
-                              <CardSkeleton key={idx} />
-                          ))
-                        : filteredBills.map((bill) => (
-                              <BillCard bill={bill} key={bill._id} />
-                          ))}
-                </div>
+            {/* Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 w-full">
+                {loading
+                    ? Array.from({ length: ITEMS_PER_PAGE }).map((_, idx) => (
+                          <CardSkeleton key={idx} />
+                      ))
+                    : paginatedBills.map((bill) => (
+                          <BillCard bill={bill} key={bill._id} />
+                      ))}
             </div>
+
+            {/* Pagination */}
+            {!loading && totalPages > 1 && (
+                <div className="flex justify-center mt-6">
+                    <div className="join">
+                        <button
+                            className="join-item btn"
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage((p) => p - 1)}
+                        >
+                            «
+                        </button>
+
+                        {Array.from({ length: totalPages }).map((_, idx) => (
+                            <button
+                                key={idx}
+                                className={`join-item btn ${
+                                    currentPage === idx + 1 ? "btn-active" : ""
+                                }`}
+                                onClick={() => setCurrentPage(idx + 1)}
+                            >
+                                {idx + 1}
+                            </button>
+                        ))}
+
+                        <button
+                            className="join-item btn"
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage((p) => p + 1)}
+                        >
+                            »
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

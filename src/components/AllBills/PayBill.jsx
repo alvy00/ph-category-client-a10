@@ -19,9 +19,10 @@ const PayBill = ({ bill, date }) => {
     const today = new Date().toISOString().split("T")[0];
 
     const handleSubmit = async (e) => {
+        if (!user) return;
         e.preventDefault();
 
-        const email = user.email;
+        const email = user?.email;
         const location = e.target.address.value;
         const username = e.target.username.value;
         const phone = e.target.phone.value;
@@ -49,10 +50,10 @@ const PayBill = ({ bill, date }) => {
     return (
         <>
             <Button
-                disabled={now.getMonth() !== currentDate.getMonth()}
+                disabled={now.getMonth() !== currentDate.getMonth() || !user}
                 onClick={() => setIsOpen(true)}
-                className=" cursor-pointer border border-gray-500 hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors data-disabled:opacity-50         data-disabled:cursor-not-allowed
-        data-disabled:bg-gray-500"
+                className=" cursor-pointer border border-primary hover:bg-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors data-disabled:opacity-50         data-disabled:cursor-not-allowed
+                            data-disabled:bg-gray-500"
             >
                 Pay Bill
             </Button>
@@ -91,7 +92,7 @@ const PayBill = ({ bill, date }) => {
                                             focus:ring-gray-500
                                             placeholder:text-gray-300
                                         "
-                                        value={user.email}
+                                        value={user?.email}
                                         readOnly
                                     />
                                     <input
